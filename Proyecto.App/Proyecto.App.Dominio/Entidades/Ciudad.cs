@@ -8,7 +8,7 @@ namespace Proyecto.App.Dominio
     {
         [Key]
         public int ciudadId { get; set;}
-        [MaxLength(50)]
+        [MaxLength(70)]
         public string nombreCiudad { get; set;}
 
         //Lista de Clientes
