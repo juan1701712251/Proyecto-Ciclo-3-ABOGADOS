@@ -1,0 +1,69 @@
+﻿@page
+@model Proyecto.SitioWeb.App.Pages.ListModel
+@{
+}
+<h1>Listado de Clientes</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>Genero</th>
+            <th>Ciudad</th>
+            <th>Pais</th>
+            <th>Casos</th>
+
+            <th>Borrar</th>
+            <th>Editar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cliente in Model.clientes)
+        {
+            <tr>
+                <td>@cliente.nombre</td>
+                <td>@cliente.apellido</td>
+                <td>@cliente.edad</td>
+                <td>@cliente.genero</td>
+                <!-- Validar que el cliente tenga una ciudad asociada -->
+                @if (cliente.ciudad == null)
+                {
+                    <td style="color:RED;">No hay una ciudad asociada</td>
+                }
+                else
+                {
+                    <td>@cliente.ciudadId - @cliente.ciudad.nombreCiudad</td>
+                }
+
+                <!-- Validar que el cliente tenga un pais asociado -->
+                @if (cliente.pais == null)
+                {
+                    <td style="color:RED;">No hay un país asociado</td>
+                }
+                else
+                {
+                    <td>@cliente.paisId - @cliente.pais.nombrePais</td>
+                }
+
+                <td>
+                    @foreach(var caso in cliente.casos)
+                    {
+                        <p style="color:BLUE; font-size:10px;">CASO:  @caso.fechaInicioCaso - @caso.descripcionCaso</p>
+                    }
+                </td>
+
+                <td>
+                    <a class="btn btn-danger"  asp-page=".\Delete" asp-route-id="@cliente.clienteId">Borrar</a>
+                </td>
+                <td>
+                    <a class="btn btn-info"  asp-page=".\Edit" asp-route-id="@cliente.clienteId">Editar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<td>
+    <a class="btn btn-success"  asp-page=".\Create">Crear Cliente</a>
+</td>

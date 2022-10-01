@@ -1,0 +1,62 @@
+﻿@page
+@model Proyecto.SitioWeb.App.Pages.CreateModel
+@{
+}
+<h1>Crear Cliente</h1>
+<!-- Formulario de creación de un cliente (nombre, apellido, edad, genero)-->
+<form method='post'>
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <!-- Atributo nombre -->
+    <div class="form-group">
+        <label asp-for="cliente.nombre" class="control-label"></label>
+        <input asp-for="cliente.nombre" class="form-control" />
+        <span asp-validation-for="cliente.nombre" class="text-danger"></span>
+    </div>
+
+    <!-- Atributo apellido -->
+    <div class="form-group">
+        <label asp-for="cliente.apellido" class="control-label"></label>
+        <input asp-for="cliente.apellido" class="form-control" />
+        <span asp-validation-for="cliente.apellido" class="text-danger"></span>
+    </div>
+
+    <!-- Atributo edad -->
+    <div class="form-group">
+        <label asp-for="cliente.edad" class="control-label"></label>
+        <input asp-for="cliente.edad" class="form-control" />
+        <span asp-validation-for="cliente.edad" class="text-danger"></span>
+    </div>
+
+    <!-- Atributo genero -->
+    <div class="form-group">
+        <label asp-for="cliente.genero" class="control-label"></label>
+        <input asp-for="cliente.genero" class="form-control" />
+        <span asp-validation-for="cliente.genero" class="text-danger"></span>
+    </div>
+
+    <!-- Atributo pais COMBOBOX PARA SELECCIONAR EL PAÍS -->
+    <div class="form-group">
+        <label asp-for="cliente.pais.nombrePais" class="control-label"></label>
+        <select asp-for="cliente.paisId" class="form-control">
+            @foreach (var pais in Model.paises)
+            {
+                <option value="@pais.paisId">@pais.nombrePais</option>
+            }
+        </select>
+        <span asp-validation-for="cliente.pais.nombrePais" class="text-danger"></span>
+    </div>
+
+    <!-- Atributo ciudad nombre-->
+    <div class="form-group">
+        <label asp-for="cliente.ciudad.nombreCiudad" class="control-label"></label>
+        <input asp-for="cliente.ciudad.nombreCiudad" class="form-control" />
+        <span asp-validation-for="cliente.ciudad.nombreCiudad" class="text-danger"></span>
+    </div>
+
+    <!-- Botón crear -->
+    <div class="form-group">
+        <input type="submit" value="Crear" class="btn btn-primary" />
+    </div>
+
+</form>
